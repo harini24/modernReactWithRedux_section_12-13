@@ -1,14 +1,17 @@
-import React from "react"
+import React, { useState } from "react"
 
 const Accordion = ({items}) => {
-    const renderedItems = items.map(item=>{
+
+    const [activeInd,setActiveInd]= useState()
+
+    const renderedItems = items.map((item,ind)=>{
         return(
            <React.Fragment key={item.title}>
-                <div className="title active">
+                <div className={`title ${ind==activeInd && 'active'}`} onClick={()=>setActiveInd(ind)}>
                 <i className="dropdown icon"></i>
                 {item.title}
             </div>
-            <div className="content active">
+            <div className={`content ${ind==activeInd && 'active'}`}>
                 <p>{item.content}</p>
             </div>
            </React.Fragment>
