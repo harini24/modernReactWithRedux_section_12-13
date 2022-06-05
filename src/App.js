@@ -1,4 +1,5 @@
 import Accordion from "./component/Accordion";
+import Dropdown from "./component/Dropdown";
 import Search from "./component/Search";
 
 const items = [
@@ -15,12 +16,28 @@ const items = [
     content: "React can be craeted by npm create-react-app",
   },
 ];
+
+const dropdwnValues = [
+  {
+    label: "Red",
+    value: "red",
+  },
+  {
+    label: "Green",
+    value: "green",
+  },
+  {
+    label: "Black",
+    value: "black",
+  },
+];
 function App() {
   return (
     <div>
       <br />
       {/* <Accordion items={items} /> */}
-      <Search />
+      {/* <Search /> */}
+      <Dropdown options={dropdwnValues}/>
     </div>
   );
 }
