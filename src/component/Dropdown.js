@@ -1,4 +1,7 @@
+import { useState } from "react";
+
 const Dropdown = ({ options, selectedOption, ondropdownSelect }) => {
+  const [open, setOpen] = useState(false);
   const renderOptions = options.map((option) => {
     if (option.value === selectedOption.value) {
       return null;
@@ -18,10 +21,15 @@ const Dropdown = ({ options, selectedOption, ondropdownSelect }) => {
     <div className="ui form">
       <div className="field">
         <label className="label">Select a color</label>
-        <div className="ui selection dropdown visible active">
+        <div
+          onClick={() => setOpen(!open)}
+          className={`ui selection dropdown ${open ? "visible active" : ""}`}
+        >
           <i className="dropdown icon"></i>
           <div className="text">{selectedOption.label}</div>
-          <div className="menu visible transition">{renderOptions}</div>
+          <div className={`menu ${open ? "visible transition" : ""}`}>
+            {renderOptions}
+          </div>
         </div>
       </div>
     </div>
