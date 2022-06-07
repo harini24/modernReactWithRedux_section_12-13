@@ -59,7 +59,7 @@ function App() {
       <Route path="/list">
         <Search items={items} />
       </Route>
-      <Route path="/transalte">
+      <Route path="/translate">
         <Translate />
       </Route>
     </div>
