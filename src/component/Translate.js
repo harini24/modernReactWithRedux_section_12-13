@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Convert from "./Convert";
 import Dropdown from "./Dropdown";
 
@@ -20,6 +20,15 @@ const dropdwnLanValues = [
 const Translate = () => {
   const [selectedItem, setSelectedItem] = useState(dropdwnLanValues[0]);
   const [text, setText] = useState("");
+  const [debouncedText, setDebouncedText] = useState(text);
+  useEffect(() => {
+    const timeout = setTimeout(() => {
+      setDebouncedText(text);
+    }, 1000);
+    return () => {
+      clearTimeout(timeout);
+    };
+  }, [text]);
   return (
     <div>
       <div className="ui form">
@@ -40,7 +49,7 @@ const Translate = () => {
       />
       <hr />
       <h3 className="ui header">Output</h3>
-      <Convert text={text} language={selectedItem} />
+      <Convert text={debouncedText} language={selectedItem} />
     </div>
   );
 };
