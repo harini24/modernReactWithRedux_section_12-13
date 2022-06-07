@@ -33,13 +33,23 @@ const dropdwnValues = [
   },
 ];
 function App() {
-  const [selectedItem,setSelectedItem] = useState(dropdwnValues[0])
+  const [selectedItem, setSelectedItem] = useState(dropdwnValues[0]);
+  const [showDropDown, setShowDropDOwn] = useState(true);
   return (
     <div>
       <br />
+      <button onClick={() => setShowDropDOwn(!showDropDown)}>
+        Toggle dropdown
+      </button>
       {/* <Accordion items={items} /> */}
       {/* <Search /> */}
-      <Dropdown selectedOption={selectedItem} ondropdownSelect={setSelectedItem} options={dropdwnValues}/>
+      {showDropDown ? (
+        <Dropdown
+          selectedOption={selectedItem}
+          ondropdownSelect={setSelectedItem}
+          options={dropdwnValues}
+        />
+      ) : null}
     </div>
   );
 }

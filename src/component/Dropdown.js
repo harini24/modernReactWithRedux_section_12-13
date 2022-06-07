@@ -7,17 +7,21 @@ const Dropdown = ({ options, selectedOption, ondropdownSelect }) => {
   //manual listeners are first called
   //react listeners are called from most chil and up to the parent
   useEffect(() => {
-    document.addEventListener(
-      "click",
-      (event) => {
-        if (ref.current.contains(event.target)) {
-          return;
-        }
-        // console.log("body click"); //1
-        setOpen(false);
-      },
-      { capture: true }
-    );
+    const onBodyClick = (event) => {
+      if (ref.current.contains(event.target)) {
+        return;
+      }
+      setOpen(false);
+    };
+    document.body.addEventListener("click", onBodyClick, { capture: true });
+
+    // on clicking anywhere while showDropDown is false, it throws error as the ref becomes null
+    // hence clearing the manul event listener whil component is unmounted 
+    return () => {
+      document.body.removeEventListener("click", onBodyClick, {
+        capture: true,
+      });
+    };
   }, []);
 
   const renderOptions = options.map((option) => {
