@@ -4,16 +4,16 @@ import Dropdown from "./Dropdown";
 
 const dropdwnLanValues = [
   {
-    label: "Afrikaans",
-    value: "af",
+    label: "tamil",
+    value: "ta",
   },
   {
     label: "Arabic",
     value: "ar",
   },
   {
-    label: "tamil",
-    value: "ta",
+    label: "telugu",
+    value: "te",
   },
 ];
 
