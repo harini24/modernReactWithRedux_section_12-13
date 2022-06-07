@@ -3,11 +3,14 @@ import { useEffect, useState } from "react";
 const Dropdown = ({ options, selectedOption, ondropdownSelect }) => {
   const [open, setOpen] = useState(false);
 
+  //manual listeners are first called
+  //react listeners are called from most chil and up to the parent
   useEffect(() => {
     document.addEventListener(
       "click",
       () => {
-        setOpen(false)
+        console.log("body click"); //1
+        setOpen(false);
       },
       { capture: true }
     );
@@ -22,7 +25,10 @@ const Dropdown = ({ options, selectedOption, ondropdownSelect }) => {
         className="item"
         key={option.value}
         value={option.value}
-        onClick={() => ondropdownSelect(option)}
+        onClick={() => {
+          ondropdownSelect(option);
+          console.log("item click"); //2
+        }}
       >
         {option.label}
       </div>
@@ -33,7 +39,10 @@ const Dropdown = ({ options, selectedOption, ondropdownSelect }) => {
       <div className="field">
         <label className="label">Select a color</label>
         <div
-          onClick={() => setOpen(!open)}
+          onClick={() => {
+            setOpen(!open);
+            console.log("dropdwon click"); //3
+          }}
           className={`ui selection dropdown ${open ? "visible active" : ""}`}
         >
           <i className="dropdown icon"></i>
