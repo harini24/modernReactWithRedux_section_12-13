@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 
-const Dropdown = ({ options, selectedOption, ondropdownSelect }) => {
+const Dropdown = ({ options, selectedOption, ondropdownSelect, label }) => {
   const [open, setOpen] = useState(false);
   const ref = useRef();
 
@@ -16,7 +16,7 @@ const Dropdown = ({ options, selectedOption, ondropdownSelect }) => {
     document.body.addEventListener("click", onBodyClick, { capture: true });
 
     // on clicking anywhere while showDropDown is false, it throws error as the ref becomes null
-    // hence clearing the manul event listener whil component is unmounted 
+    // hence clearing the manul event listener whil component is unmounted
     return () => {
       document.body.removeEventListener("click", onBodyClick, {
         capture: true,
@@ -46,7 +46,7 @@ const Dropdown = ({ options, selectedOption, ondropdownSelect }) => {
   return (
     <div className="ui form" ref={ref}>
       <div className="field">
-        <label className="label">Select a color</label>
+        <label className="label">{label}</label>
         <div
           onClick={() => {
             setOpen(!open);
